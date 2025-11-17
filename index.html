@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Man Eating Ice Cream</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 400px;
+            height: 600px;
+        }
+
+        /* Man's head */
+        .head {
+            position: absolute;
+            top: 50px;
+            left: 120px;
+            width: 160px;
+            height: 180px;
+            background: #ffdbac;
+            border-radius: 50% 50% 50% 50%;
+            z-index: 2;
+        }
+
+        /* Hair */
+        .hair {
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            width: 140px;
+            height: 80px;
+            background: #4a3520;
+            border-radius: 50% 50% 0 0;
+        }
+
+        /* Eyes */
+        .eye {
+            position: absolute;
+            top: 70px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            border: 2px solid #333;
+        }
+
+        .eye-left {
+            left: 40px;
+        }
+
+        .eye-right {
+            right: 40px;
+        }
+
+        .pupil {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 8px;
+            height: 8px;
+            background: #333;
+            border-radius: 50%;
+            animation: lookAtIceCream 3s ease-in-out infinite;
+        }
+
+        @keyframes lookAtIceCream {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-3px, 5px); }
+        }
+
+        /* Nose */
+        .nose {
+            position: absolute;
+            top: 95px;
+            left: 70px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 15px solid #ffcd9e;
+        }
+
+        /* Mouth */
+        .mouth {
+            position: absolute;
+            top: 120px;
+            left: 50px;
+            width: 60px;
+            height: 30px;
+            border: 3px solid #333;
+            border-top: none;
+            border-radius: 0 0 60px 60px;
+            animation: eating 2s ease-in-out infinite;
+        }
+
+        @keyframes eating {
+            0%, 100% { height: 30px; }
+            50% { height: 40px; }
+        }
+
+        /* Tongue */
+        .tongue {
+            position: absolute;
+            bottom: 0;
+            left: 15px;
+            width: 30px;
+            height: 20px;
+            background: #ff6b8a;
+            border-radius: 0 0 50% 50%;
+        }
+
+        /* Body */
+        .body {
+            position: absolute;
+            top: 230px;
+            left: 110px;
+            width: 180px;
+            height: 200px;
+            background: #4a90e2;
+            border-radius: 20px 20px 0 0;
+            z-index: 1;
+        }
+
+        /* Arm holding ice cream */
+        .arm {
+            position: absolute;
+            top: 250px;
+            left: 60px;
+            width: 50px;
+            height: 140px;
+            background: #ffdbac;
+            border-radius: 25px;
+            transform-origin: top center;
+            animation: liftArm 2s ease-in-out infinite;
+            z-index: 3;
+        }
+
+        @keyframes liftArm {
+            0%, 100% { transform: rotate(-30deg) translateY(0); }
+            50% { transform: rotate(-45deg) translateY(-20px); }
+        }
+
+        /* Hand */
+        .hand {
+            position: absolute;
+            bottom: -20px;
+            left: 5px;
+            width: 40px;
+            height: 40px;
+            background: #ffdbac;
+            border-radius: 50%;
+        }
+
+        /* Ice cream cone */
+        .ice-cream-cone {
+            position: absolute;
+            top: 200px;
+            left: 50px;
+            animation: moveIceCream 2s ease-in-out infinite;
+            z-index: 4;
+        }
+
+        @keyframes moveIceCream {
+            0%, 100% { transform: translateY(0) rotate(-15deg); }
+            50% { transform: translateY(-30px) rotate(-20deg); }
+        }
+
+        /* Cone */
+        .cone {
+            position: relative;
+            width: 0;
+            height: 0;
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 100px solid #d2691e;
+            margin-left: 10px;
+        }
+
+        .cone::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: -30px;
+            width: 60px;
+            height: 2px;
+            background: #8b4513;
+        }
+
+        .cone::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: -25px;
+            width: 50px;
+            height: 2px;
+            background: #8b4513;
+        }
+
+        /* Ice cream scoops */
+        .scoop {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        .scoop-1 {
+            top: -80px;
+            left: 15px;
+            background: #ff69b4;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.1);
+        }
+
+        .scoop-2 {
+            top: -120px;
+            left: 20px;
+            background: #87ceeb;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.1);
+        }
+
+        .scoop-3 {
+            top: -150px;
+            left: 18px;
+            background: #ffe4b5;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Drips */
+        .drip {
+            position: absolute;
+            width: 8px;
+            height: 20px;
+            background: #87ceeb;
+            border-radius: 0 0 50% 50%;
+            animation: dripping 3s ease-in-out infinite;
+        }
+
+        .drip-1 {
+            top: -100px;
+            left: 25px;
+            animation-delay: 0s;
+        }
+
+        .drip-2 {
+            top: -110px;
+            left: 55px;
+            animation-delay: 1s;
+        }
+
+        @keyframes dripping {
+            0%, 90%, 100% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            80% {
+                opacity: 1;
+                transform: translateY(30px);
+            }
+        }
+
+        /* Other arm */
+        .arm-right {
+            position: absolute;
+            top: 250px;
+            right: 110px;
+            width: 50px;
+            height: 140px;
+            background: #ffdbac;
+            border-radius: 25px;
+            transform: rotate(30deg);
+            z-index: 0;
+        }
+
+        .hand-right {
+            position: absolute;
+            bottom: -20px;
+            left: 5px;
+            width: 40px;
+            height: 40px;
+            background: #ffdbac;
+            border-radius: 50%;
+        }
+
+        /* Title */
+        .title {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">Man Eating Ice Cream</h1>
+    <div class="container">
+        <!-- Man's body -->
+        <div class="body"></div>
+
+        <!-- Right arm (behind) -->
+        <div class="arm-right">
+            <div class="hand-right"></div>
+        </div>
+
+        <!-- Man's head -->
+        <div class="head">
+            <div class="hair"></div>
+            <div class="eye eye-left">
+                <div class="pupil"></div>
+            </div>
+            <div class="eye eye-right">
+                <div class="pupil"></div>
+            </div>
+            <div class="nose"></div>
+            <div class="mouth">
+                <div class="tongue"></div>
+            </div>
+        </div>
+
+        <!-- Left arm with ice cream -->
+        <div class="arm">
+            <div class="hand"></div>
+        </div>
+
+        <!-- Ice cream -->
+        <div class="ice-cream-cone">
+            <div class="cone">
+                <div class="scoop scoop-1"></div>
+                <div class="scoop scoop-2"></div>
+                <div class="scoop scoop-3"></div>
+                <div class="drip drip-1"></div>
+                <div class="drip drip-2"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
